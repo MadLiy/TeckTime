@@ -40,11 +40,26 @@ class UserFormType extends AbstractType
                 'required' => false,
                 'label' => 'Poste',
                 'attr' => ['class' => 'futuristic-input'],
-            ])
+            ]);
+        if ($options['is_admin'] === true) {
+            $builder->add('roles', ChoiceType::class, [
+                'label' => 'Rôles',
+                'choices' => [
+                    'Utilisateur'    => 'ROLE_USER',
+                    'Manager'        => 'ROLE_MANAGER',
+                    'Directeur'      => 'ROLE_DIRECTEUR',
+                    'Administrateur' => 'ROLE_ADMIN',
+                ],
+                'expanded' => true,
+                'multiple' => true,
+                'attr' => ['class' => 'futuristic-checkbox-group futuristic-input'],
+            ]);
+        }
+        $builder
             ->add('hourRateByDefault', TextType::class, [
-                'required' => false,
-                'label' => 'Taux horaire',
-                'attr' => ['class' => 'futuristic-input'],
+            'required' => false,
+            'label' => 'Taux horaire',
+            'attr' => ['class' => 'futuristic-input'],
             ])
             ->add('imageFile', FileType::class, [
                 'label' => 'Avatar',
@@ -64,20 +79,6 @@ class UserFormType extends AbstractType
                 'attr' => ['class' => 'btn-futuristic'],
             ]);
 
-        if ($options['is_admin'] === true) {
-            $builder->add('roles', ChoiceType::class, [
-                'label' => 'Rôles',
-                'choices' => [
-                    'Utilisateur'    => 'ROLE_USER',
-                    'Manager'        => 'ROLE_MANAGER',
-                    'Directeur'      => 'ROLE_DIRECTEUR',
-                    'Administrateur' => 'ROLE_ADMIN',
-                ],
-                'expanded' => true,
-                'multiple' => true,
-                'attr' => ['class' => 'futuristic-checkbox-group futuristic-input'],
-            ]);
-        }
     }
 
     public function configureOptions(OptionsResolver $resolver): void
