@@ -34,7 +34,9 @@ class UserController extends AbstractController
     {
         $user = new User();
 
-        $form = $this->createForm(UserFormType::class, $user);
+        $form = $this->createForm(UserFormType::class, $user, [
+            'is_admin' => $this->isGranted('ROLE_ADMIN'),
+        ]);
         if ($formHandler->handleForm($form, $request, true)) {
             return $this->redirectToRoute('viewUsers');
         }
@@ -51,7 +53,9 @@ class UserController extends AbstractController
         if (!$user) {
             return $this->redirectToRoute('viewUsers');
         }
-        $form = $this->createForm(UserFormType::class, $user);
+        $form = $this->createForm(UserFormType::class, $user, [
+            'is_admin' => $this->isGranted('ROLE_ADMIN'),
+        ]);
         if ($formHandler->handleForm($form, $request, true)) {
             return $this->redirectToRoute('viewUsers');
         }
