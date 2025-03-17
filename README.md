@@ -18,10 +18,10 @@ Installation & Lancement
  
 Installation
  
-git clone https://github.com/utilisateur/TeckTime.git
-cd TeckTime
-composer install
-npm install
+git clone https://github.com/utilisateur/TeckTime.git<br>
+cd TeckTime<br>
+composer install<br>
+npm install<br>
  
 Configuration
  
